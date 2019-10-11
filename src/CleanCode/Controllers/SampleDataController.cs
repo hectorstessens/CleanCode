@@ -38,7 +38,7 @@ namespace CleanCode.Controllers
             });
         }
 
-        [HttpGet("[quote]")]
+        [HttpGet("quote")]
         public async Task<QuoteResponse> quote()
         {
             var quoteQuery = new QuoteQuery();
