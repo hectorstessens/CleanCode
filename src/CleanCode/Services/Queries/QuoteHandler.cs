@@ -10,12 +10,12 @@ namespace CleanCode.Services.Queries
         public async Task<QuoteResponse> Handle(QuoteQuery request, CancellationToken cancellationToken)
         {
             QuoteResponse quoteResponse = new QuoteResponse();
-            CotizarRapido cotizadorRapido = new CotizarRapido();
+            CotizarRapidoRepository cotizadorRapido = new CotizarRapidoRepository();
             
-            var result = await cotizadorRapido.cotizar();
+            var result = await cotizadorRapido.Cotizar(quoteResponse.precio,quoteResponse.SumaAsegurada);
 
-            quoteResponse.precio = result.Price;
-            quoteResponse.SumaAsegurada = result.InsuredValue;
+            quoteResponse.precio = result.P;
+            quoteResponse.SumaAsegurada = result.I;
 
             return quoteResponse;
         }

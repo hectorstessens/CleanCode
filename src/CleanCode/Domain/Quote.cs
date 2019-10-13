@@ -9,13 +9,11 @@ namespace CleanCode.Domain
         /// Coberturas
         /// </summary>
         public List<Coverage> Coverages { get; set; }
-        /// <summary>
-        /// Precio
-        /// </summary>
-        public decimal Price { get; set; }
-        /// <summary>
-        /// Suma Asegurada
-        /// </summary>
-        public decimal InsuredValue { get; set; }
+
+        //Use Intention-Revealing Names
+        public decimal P { get; set; }
+        public decimal I { get; set; }
+        public decimal S { get; set; }
+        public decimal I2 { get; set; }
     }
 }

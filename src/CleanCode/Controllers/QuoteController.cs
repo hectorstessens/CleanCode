@@ -6,16 +6,15 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 using CleanCode.Services.Queries;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace CleanCode.Controllers
 {
     [Route("api/[controller]")]
-    public class SampleDataController : Controller
+    public class QuoteController : Controller
     {
         private readonly IMediator mediator;
-        public SampleDataController(IMediator mediator)
+        public QuoteController(IMediator mediator)
         {
             this.mediator = mediator;
         }
@@ -26,35 +25,35 @@ namespace CleanCode.Controllers
         };
 
         [HttpGet("[action]")]
-        public IEnumerable<WeatherForecast> WeatherForecasts()
+        public IEnumerable<Plan> GetPlans()
         {
 
             var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+            return Enumerable.Range(1, 5).Select(index => new Plan
             {
-                DateFormatted = DateTime.Now.AddDays(index).ToString("d"),
-                TemperatureC = rng.Next(-20, 55),
-                Summary = Summaries[rng.Next(Summaries.Length)]
+                Name = "Plan 1",
+                Franchise = rng.Next(-20, 55),
+                Coverage = Summaries[rng.Next(Summaries.Length)]
             });
         }
 
-        [HttpGet("quote")]
-        public async Task<QuoteResponse> quote()
+        [HttpGet]
+        public async Task<QuoteResponse> Quote()
         {
             var quoteQuery = new QuoteQuery();
             return await mediator.Send(quoteQuery);
         }
 
-        public class WeatherForecast
+        public class Plan
         {
-            public string DateFormatted { get; set; }
-            public int TemperatureC { get; set; }
-            public string Summary { get; set; }
+            public string Name { get; set; }
+            public int Franchise { get; set; }
+            public string Coverage { get; set; }
 
-            public int TemperatureF
+            public decimal Price
             {
                 get {
-                    return 32 + (int)(TemperatureC / 0.5556);
+                    return 32 + (int)(2 / 0.5556);
                 }
             }
         }
