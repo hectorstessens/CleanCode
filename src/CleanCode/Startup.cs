@@ -1,4 +1,5 @@
 using AutoMapper;
+using CleanCode.Domain.Factory;
 using CleanCode.Repository;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
@@ -28,7 +29,8 @@ namespace CleanCode
             services.AddAutoMapper(typeof(Startup));
 
             services.AddTransient<ICoverageRepository, CoverageRepository>();
-            
+            services.AddTransient<IQuoteFactory, QuoteFactory>();
+
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {

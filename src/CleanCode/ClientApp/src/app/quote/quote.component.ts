@@ -27,7 +27,7 @@ export class QuoteComponent {
     }
     public quote() {
         const formValue = this.quoteForm.value;
-        this.http.get<QuoteData>(this.baseUrl + `api/Quote?branch=${formValue.branch}&insuredValue=${formValue.branch}`).subscribe(result => {
+        this.http.get<QuoteData>(this.baseUrl + `api/Quote?branch=${formValue.branch}&insuredValue=${formValue.insuredValue}`).subscribe(result => {
             this.quoteData = result;
         }, error => console.error(error));
     }

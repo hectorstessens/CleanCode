@@ -1,5 +1,6 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
+using AutoMapper;
 using CleanCode.Repository;
 using MediatR;
 
@@ -7,6 +8,11 @@ namespace CleanCode.Services.Queries
 {
     public class QuoteHandler : IRequestHandler<QuoteQuery, QuoteResponse>
     {
+        private readonly IMapper mapper;
+        public QuoteHandler(IMapper mapper) 
+        {
+            this.mapper = mapper;
+        }
         public async Task<QuoteResponse> Handle(QuoteQuery request, CancellationToken cancellationToken)
         {
             QuoteResponse quoteResponse = new QuoteResponse();
@@ -17,6 +23,7 @@ namespace CleanCode.Services.Queries
             quoteResponse.Branch = request.Branch;
             quoteResponse.SumaAsegurada = result.InsuredValue;
             quoteResponse.Precio = result.P;
+            quoteResponse = mapper.Map<Domain.Quote, QuoteResponse>(result);
             return quoteResponse;
         }
     }
