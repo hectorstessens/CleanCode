@@ -38,11 +38,9 @@ namespace CleanCode.Controllers
         }
 
         [HttpGet]
-        public async Task<QuoteResponse> Quote()
-        {
-            var quoteQuery = new QuoteQuery();
-            return await mediator.Send(quoteQuery);
-        }
+        public async Task<QuoteResponse> Quote([FromQuery] QuoteQuery quoteQuery)
+        => await mediator.Send(quoteQuery);
+        
 
         public class Plan
         {
