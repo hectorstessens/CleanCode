@@ -12,11 +12,11 @@ namespace CleanCode.Services.Queries
             QuoteResponse quoteResponse = new QuoteResponse();
             CotizarRapidoRepository cotizadorRapido = new CotizarRapidoRepository();
             
-            var result = await cotizadorRapido.Cotizar(quoteResponse.precio,quoteResponse.SumaAsegurada);
-
-            quoteResponse.precio = result.P;
-            quoteResponse.SumaAsegurada = result.I;
-
+            var result = await cotizadorRapido.Cotizar(request.Branch, request.InsuredValue);
+            //Meaninful Names - Avoid Mental Mapping
+            quoteResponse.Branch = request.Branch;
+            quoteResponse.SumaAsegurada = result.InsuredValue;
+            quoteResponse.Precio = result.P;
             return quoteResponse;
         }
     }

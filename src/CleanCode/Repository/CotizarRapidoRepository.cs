@@ -7,11 +7,12 @@ namespace CleanCode.Repository
     public class CotizarRapidoRepository
     {
 
-        public async Task<Quote> Cotizar(decimal i, decimal p) 
+        public async Task<Quote> Cotizar(string branch,decimal insuredValue) 
         {
             Quote quote = new Quote();
-            quote.I = i;
-            quote.P = p;
+            quote.InsuredValue = insuredValue;
+            // Use Intention-Revealing Names
+            quote.P = 1;
 
             return quote;
         }

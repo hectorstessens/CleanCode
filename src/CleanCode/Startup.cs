@@ -1,3 +1,4 @@
+using AutoMapper;
 using CleanCode.Repository;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
@@ -24,6 +25,7 @@ namespace CleanCode
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddMediatR(typeof(Startup).Assembly);
+            services.AddAutoMapper(typeof(Startup));
 
             services.AddTransient<ICoverageRepository, CoverageRepository>();
             
@@ -51,7 +53,8 @@ namespace CleanCode
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
-            
+
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

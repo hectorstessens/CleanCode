@@ -10,10 +10,14 @@ namespace CleanCode.Domain
         /// </summary>
         public List<Coverage> Coverages { get; set; }
 
-        //Use Intention-Revealing Names
+        //Meaninful Names - Use Intention-Revealing Names
+        /// <summary>
+        /// Precio
+        /// </summary>
         public decimal P { get; set; }
-        public decimal I { get; set; }
-        public decimal S { get; set; }
-        public decimal I2 { get; set; }
+        /// <summary>
+        /// Suma asegurada
+        /// </summary>
+        public decimal InsuredValue { get; set; }
     }
 }
