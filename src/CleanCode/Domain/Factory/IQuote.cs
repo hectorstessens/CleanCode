@@ -2,6 +2,6 @@
 {
     public interface IQuote
     {
-        decimal Get(string insuredValue);
+        Quote GetQuote(decimal insuredValue);
     }
 }

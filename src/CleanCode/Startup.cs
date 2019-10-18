@@ -1,5 +1,6 @@
 using AutoMapper;
 using CleanCode.Domain.Factory;
+using CleanCode.Filters;
 using CleanCode.Repository;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
@@ -30,6 +31,9 @@ namespace CleanCode
 
             services.AddTransient<ICoverageRepository, CoverageRepository>();
             services.AddTransient<IQuoteFactory, QuoteFactory>();
+
+            // Se agrega FluentValidation y registra los validadores
+            services.AddMvc(options => options.Filters.Add(typeof(CustomExceptionFilterAttribute)));
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

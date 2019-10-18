@@ -11,6 +11,7 @@ namespace CleanCode.Domain.Factory
         private readonly static IDictionary<string, Type> QuoteTypes = new Dictionary<string, Type>()
         {
             [Branch.Auto] = typeof(AutoQuote),
+            [Branch.Hogar] = typeof(HogarQuote),
 
         };
 

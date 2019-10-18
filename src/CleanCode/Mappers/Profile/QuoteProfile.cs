@@ -11,6 +11,7 @@ namespace CleanCode.Mappers
             CreateMap<Quote, QuoteResponse>()
                 .ForMember(d => d.Branch, s => s.Ignore())
                 .ForMember(d => d.SumaAsegurada, s => s.MapFrom(x => x.InsuredValue))
+                .ForMember(d => d.Coverages, s => s.Ignore())
                 .ForMember(d => d.Precio, s => s.MapFrom(x => x.P));
         }
     }

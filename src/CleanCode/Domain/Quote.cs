@@ -4,11 +4,11 @@ namespace CleanCode.Domain
 {
     public class Quote
     {
-
-        /// <summary>
-        /// Coberturas
-        /// </summary>
-        public List<Coverage> Coverages { get; set; }
+        public Quote(decimal price ,decimal insuredValue) 
+        {
+            this.P = price;
+            this.InsuredValue = insuredValue;
+        }
 
         //Meaninful Names - Use Intention-Revealing Names
         /// <summary>

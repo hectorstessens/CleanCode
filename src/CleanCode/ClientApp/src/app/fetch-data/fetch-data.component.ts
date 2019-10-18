@@ -7,10 +7,14 @@ import { HttpClient } from '@angular/common/http';
 })
 export class FetchDataComponent {
     public planList: Plan[];
+    public message: string;
+
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
       http.get<Plan[]>(baseUrl + 'api/Quote/GetPlans').subscribe(result => {
           this.planList = result;
-    }, error => console.error(error));
+      },
+          error => this.message = error.error
+      );
 
   }
 }

@@ -2,6 +2,8 @@
 {
     public static class Branch
     {
-        public static string Auto => "Auto";
+        public static string Auto => "auto";
+        public static string Hogar => "hogar";
+
     }
 }

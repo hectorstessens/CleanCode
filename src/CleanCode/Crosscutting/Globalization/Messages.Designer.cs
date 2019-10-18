@@ -61,7 +61,7 @@ namespace CleanCode.Crosscutting.Globalization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Branch no soportado para el cotizador!.
+        ///   Looks up a localized string similar to Ramono soportado por el cotizador!.
         /// </summary>
         public static string NoSuportedType {
             get {

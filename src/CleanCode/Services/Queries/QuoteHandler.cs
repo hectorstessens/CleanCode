@@ -1,6 +1,8 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
+using CleanCode.Domain;
+using CleanCode.Domain.Factory;
 using CleanCode.Repository;
 using MediatR;
 
@@ -10,11 +12,14 @@ namespace CleanCode.Services.Queries
     {
         private readonly IMapper mapper;
         private readonly ICoverageRepository coverageRepository;
+        private readonly IQuoteFactory quoteFactory;
 
-        public QuoteHandler(IMapper mapper, ICoverageRepository coverageRepository) 
+        public QuoteHandler(IMapper mapper, ICoverageRepository coverageRepository, IQuoteFactory quoteFactory) 
         {
             this.mapper = mapper;
             this.coverageRepository = coverageRepository;
+            this.quoteFactory = quoteFactory;
+
         }
         public async Task<QuoteResponse> Handle(QuoteQuery request, CancellationToken cancellationToken)
         {
@@ -27,6 +32,11 @@ namespace CleanCode.Services.Queries
             quoteResponse.SumaAsegurada = result.InsuredValue;
             quoteResponse.Precio = result.P;
             quoteResponse.Coverages = await coverageRepository.GetCoverageByBranch(request.Branch);
+            var quoteService = quoteFactory.Create(request.Branch);
+
+            Quote quote = quoteService.GetQuote(request.InsuredValue);
+            quoteResponse = mapper.Map<Domain.Quote, QuoteResponse>(quote);
+            
             return quoteResponse;
         }
     }

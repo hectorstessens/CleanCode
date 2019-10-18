@@ -18,24 +18,29 @@
   </div>
 </form>
 <br />
-<h1>Resultado Cotizacion</h1>
+<h1>Resultado Cotización</h1>
 <p>Suma Asegurada: <strong>{{ quoteData.sumaAsegurada }}</strong></p>
 <p>Precio Mensual: <strong>{{ quoteData.precio }}</strong></p>
 
 <button class="btn btn-primary" (click)="quote()">Cotizar</button>
 <br />
 <br />
-<table class='table table-striped'>
-  <thead>
-    <tr>
-      <th>Cobertura</th>
-      <th>Suma asegurada</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let item of quoteData.coverages">
-      <td>{{ item.coverageName }}</td>
-      <td>{{ item.value }}</td>
-    </tr>
-  </tbody>
-</table>
+<div ng-if="quoteData.coverages">
+  something else
+  <table class='table table-striped'>
+    <thead>
+      <tr>
+        <th>Cobertura</th>
+        <th>Suma asegurada</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of quoteData.coverages">
+        <td>{{ item.coverageName }}</td>
+        <td>{{ item.value }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p>Mensajes: <strong>{{ message }}</strong></p>
+

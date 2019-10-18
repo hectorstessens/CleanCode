@@ -1,7 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormControl } from '@angular/forms';
-import { HttpHeaders } from '@angular/common/http';
 
 @Component({
     selector: 'app-quote-component',
@@ -11,7 +10,7 @@ import { HttpHeaders } from '@angular/common/http';
 
 export class QuoteComponent {
 
-
+    public message: string;
     public quoteData: QuoteData;
     public http: HttpClient;
     public baseUrl: string;
@@ -24,12 +23,15 @@ export class QuoteComponent {
             branch: new FormControl(),
             insuredValue: new FormControl()
         });
+        this.message = "Cotización Realizada";
     }
     public quote() {
         const formValue = this.quoteForm.value;
         this.http.get<QuoteData>(this.baseUrl + `api/Quote?branch=${formValue.branch}&insuredValue=${formValue.insuredValue}`).subscribe(result => {
             this.quoteData = result;
-        }, error => console.error(error));
+        }, error => {
+                this.message = error.error;
+        });
     }
 
 }
