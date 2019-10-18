@@ -26,9 +26,14 @@ namespace CleanCode.Services.Queries
             quoteResponse.Branch = request.Branch;
             quoteResponse.SumaAsegurada = result.InsuredValue;
             quoteResponse.Precio = result.P;
-            quoteResponse = mapper.Map<Domain.Quote, QuoteResponse>(result);
             quoteResponse.Coverages = await coverageRepository.GetCoverageByBranch(request.Branch);
             return quoteResponse;
         }
     }
 }
+
+
+
+
+
+//quoteResponse = mapper.Map<Domain.Quote, QuoteResponse>(result);

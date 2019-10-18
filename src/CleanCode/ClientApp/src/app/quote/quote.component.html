@@ -1,10 +1,9 @@
 <h1>Cotizador</h1>
 <form [formGroup]="quoteForm" (ngSubmit)="onSubmit(quoteForm.value)">
-
   <div>
     <label for="branch">
       Ramo
-    </label>
+    </label> <br />
     <select formControlName="branch">
       <option value="auto">Automotores</option>
       <option value="motos">Motos</option>
@@ -14,18 +13,18 @@
   <div>
     <label for="insuredValue">
       Suma Asegurada
-    </label>
+    </label><br />
     <input id="insuredValue" type="text" formControlName="insuredValue">
   </div>
 </form>
-
+<br />
 <h1>Resultado Cotizacion</h1>
 <p>Suma Asegurada: <strong>{{ quoteData.sumaAsegurada }}</strong></p>
 <p>Precio Mensual: <strong>{{ quoteData.precio }}</strong></p>
 
 <button class="btn btn-primary" (click)="quote()">Cotizar</button>
-
-
+<br />
+<br />
 <table class='table table-striped'>
   <thead>
     <tr>
