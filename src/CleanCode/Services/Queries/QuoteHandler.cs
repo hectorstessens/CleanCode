@@ -32,11 +32,6 @@ namespace CleanCode.Services.Queries
             quoteResponse.SumaAsegurada = result.InsuredValue;
             quoteResponse.Precio = result.P;
             quoteResponse.Coverages = await coverageRepository.GetCoverageByBranch(request.Branch);
-            var quoteService = quoteFactory.Create(request.Branch);
-
-            Quote quote = quoteService.GetQuote(request.InsuredValue);
-            quoteResponse = mapper.Map<Domain.Quote, QuoteResponse>(quote);
-            
             return quoteResponse;
         }
     }
@@ -46,4 +41,6 @@ namespace CleanCode.Services.Queries
 
 
 
-//quoteResponse = mapper.Map<Domain.Quote, QuoteResponse>(result);
+// var quoteService = quoteFactory.Create(request.Branch);
+//Quote quote = quoteService.GetQuote(request.InsuredValue);
+//quoteResponse = mapper.Map<Domain.Quote, QuoteResponse>(quote);

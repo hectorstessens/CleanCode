@@ -23,14 +23,16 @@ export class QuoteComponent {
             branch: new FormControl(),
             insuredValue: new FormControl()
         });
-        this.message = "Cotización Realizada";
+
     }
     public quote() {
         const formValue = this.quoteForm.value;
         this.http.get<QuoteData>(this.baseUrl + `api/Quote?branch=${formValue.branch}&insuredValue=${formValue.insuredValue}`).subscribe(result => {
             this.quoteData = result;
+            this.message = "Cotización Realizada";
         }, error => {
                 this.message = error.error;
+                this.quoteData.coverages = [];
         });
     }
 
@@ -38,16 +40,16 @@ export class QuoteComponent {
 
 
 
-interface QuoteData {
+class QuoteData {
     branch: string;
     insuredValue: string;
     price: string;
     sumaAsegurada: string;
     precio: number;
-    coverages: Coverage[];
+    coverages: Coverage[] = [];
 }
 
-interface Coverage {
+class Coverage {
     id: string;
     coverageName: number;
     value: number;

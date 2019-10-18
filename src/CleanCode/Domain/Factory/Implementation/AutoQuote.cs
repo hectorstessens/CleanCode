@@ -5,13 +5,12 @@ namespace CleanCode.Domain.Factory
     {
         public AutoQuote()
         {
-            decimal scoring = 10;
-            this.Scoring = scoring;
+            this.Scoring = 1;
             this.Taxes = 0.21M;
         }
         public override Quote GetQuote(decimal insuredValue)
         {
-            return new Quote(insuredValue * Scoring * Taxes, insuredValue);
+            return new Quote(insuredValue * Scoring * Taxes /100, insuredValue);
         }
     }
 }
