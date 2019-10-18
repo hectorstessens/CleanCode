@@ -42,4 +42,11 @@ interface QuoteData {
     price: string;
     sumaAsegurada: string;
     precio: number;
+    coverages: Coverage[];
+}
+
+interface Coverage {
+    id: string;
+    coverageName: number;
+    value: number;
 }

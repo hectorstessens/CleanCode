@@ -12,11 +12,11 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let forecast of planList">
-      <td>{{ forecast.name }}</td>
-      <td>{{ forecast.franchise }}</td>
-      <td>{{ forecast.price }}</td>
-      <td>{{ forecast.coverage }}</td>
+    <tr *ngFor="let item of planList">
+      <td>{{ item.name }}</td>
+      <td>{{ item.franchise }}</td>
+      <td>{{ item.price }}</td>
+      <td>{{ item.coverage }}</td>
     </tr>
   </tbody>
 </table>

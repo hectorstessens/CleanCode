@@ -9,9 +9,12 @@ namespace CleanCode.Services.Queries
     public class QuoteHandler : IRequestHandler<QuoteQuery, QuoteResponse>
     {
         private readonly IMapper mapper;
-        public QuoteHandler(IMapper mapper) 
+        private readonly ICoverageRepository coverageRepository;
+
+        public QuoteHandler(IMapper mapper, ICoverageRepository coverageRepository) 
         {
             this.mapper = mapper;
+            this.coverageRepository = coverageRepository;
         }
         public async Task<QuoteResponse> Handle(QuoteQuery request, CancellationToken cancellationToken)
         {
@@ -24,6 +27,7 @@ namespace CleanCode.Services.Queries
             quoteResponse.SumaAsegurada = result.InsuredValue;
             quoteResponse.Precio = result.P;
             quoteResponse = mapper.Map<Domain.Quote, QuoteResponse>(result);
+            quoteResponse.Coverages = await coverageRepository.GetCoverageByBranch(request.Branch);
             return quoteResponse;
         }
     }

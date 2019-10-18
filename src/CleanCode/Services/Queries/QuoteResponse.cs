@@ -1,4 +1,6 @@
-﻿using MediatR;
+﻿using CleanCode.Domain;
+using MediatR;
+using System.Collections.Generic;
 
 namespace CleanCode.Services.Queries
 {
@@ -7,5 +9,7 @@ namespace CleanCode.Services.Queries
         public string Branch { get; set; }
         public decimal SumaAsegurada { get; set; }
         public decimal Precio { get; set; }
+        public  List<Coverage>  Coverages { get; set; }
+
     }
 }
